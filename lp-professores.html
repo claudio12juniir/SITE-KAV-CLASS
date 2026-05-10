@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAV Class — A plataforma que todo professor particular precisava</title>
+  <meta name="description" content="Gerencie alunos, agenda e cobranças com o KAV Class. O app completo para professores particulares de qualquer área — de idiomas a yoga, música a reforço escolar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <style>
+    /* Estilos extras específicos desta LP */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .audience-card {
+      padding: 24px 20px;
+      background: #0D0D0D;
+      border: 1px solid #2a2a2a;
+      border-radius: var(--r-lg);
+      text-align: center;
+      transition: all 0.3s var(--ease);
+    }
+
+    .audience-card:hover {
+      border-color: var(--aqua-line);
+      transform: translateY(-4px);
+    }
+
+    .audience-icon { font-size: 2rem; margin-bottom: 12px; }
+    .audience-card span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      display: block;
+    }
+
+    .compare-section {
+      padding: 100px 0;
+      background: var(--gray-100);
+    }
+
+    .compare-header { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .compare-table thead { background: var(--black); }
+    .compare-table thead th {
+      padding: 20px 24px;
+      text-align: left;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .compare-table thead th:first-child { color: rgba(255,255,255,0.4); }
+    .compare-table thead th.col-kav { color: var(--aqua); }
+
+    .compare-table tbody tr {
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .compare-table tbody td {
+      padding: 18px 24px;
+      font-size: 0.9rem;
+      color: var(--gray-600);
+    }
+
+    .compare-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .compare-table .col-kav {
+      color: var(--aqua);
+      font-weight: 700;
+    }
+
+    .compare-table .col-others { color: var(--gray-400); }
+
+    .check-yes { color: var(--aqua); font-weight: 700; }
+    .check-no { color: var(--gray-300); }
+
+    .plan-section {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .plan-header { text-align: center; max-width: 560px; margin: 0 auto 64px; }
+
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .plan-card {
+      padding: 40px;
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--r-xl);
+      transition: all 0.3s var(--ease);
+      position: relative;
+    }
+
+    .plan-card--featured {
+      background: var(--black);
+      border-color: var(--aqua-line);
+      box-shadow: var(--shadow-aqua);
+    }
+
+    .plan-card:hover:not(.plan-card--featured) {
+      border-color: var(--aqua);
+      transform: translateY(-4px);
+    }
+
+    .plan-popular {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--aqua);
+      color: var(--black);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray-400);
+      margin-bottom: 12px;
+    }
+
+    .plan-card--featured .plan-name { color: rgba(255,255,255,0.4); }
+
+    .plan-price {
+      margin-bottom: 8px;
+    }
+
+    .plan-price strong {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .plan-card--featured .plan-price strong { color: var(--white); }
+
+    .plan-price span { font-size: 0.85rem; color: var(--gray-400); }
+
+    .plan-desc {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-bottom: 32px;
+    }
+
+    .plan-card--featured .plan-desc { color: rgba(255,255,255,0.5); }
+
+    .plan-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .plan-features li {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .plan-card--featured .plan-features li { color: rgba(255,255,255,0.6); }
+
+    .plan-features li::before {
+      content: '✓';
+      color: var(--aqua);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .audience-grid { grid-template-columns: repeat(2, 1fr); }
+      .plans-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .compare-table { font-size: 0.8rem; }
+      .compare-table td, .compare-table th { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="lp-nav">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo kav class.png" alt="KAV Class" height="32">
+      </a>
+      <a href="#download" class="btn btn-primary">Começar grátis</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="lp-hero">
+    <div class="lp-hero-bg-grid"></div>
+    <div class="container">
+      <div class="lp-hero-eyebrow">🎓 Para professores particulares</div>
+      <h1>A plataforma que todo<br>professor particular <span class="highlight">precisava</span></h1>
+      <p class="lp-hero-sub">Chega de planilhas, WhatsApp para cobrar e agenda no papel. O KAV Class reúne tudo que você precisa para gerenciar suas aulas com profissionalismo — independente da sua área.</p>
+      <div class="lp-hero-cta">
+        <a href="#download" class="btn btn-primary btn-lg">Começar grátis agora</a>
+        <a href="#como-funciona" class="btn btn-ghost btn-lg">Ver como funciona</a>
+      </div>
+      <div class="lp-hero-trust">
+        <span>Grátis para começar</span>
+        <span>Sem cartão de crédito</span>
+        <span>Configuração em 2 minutos</span>
+        <span>+10.000 professores cadastrados</span>
+      </div>
+
+      <div class="audience-grid">
+        <div class="audience-card reveal reveal-delay-1">
+          <div class="audience-icon">🌍</div>
+          <span>Idiomas</span>
+        </div>
+        <div class="audience-card reveal reveal-delay-2">
+          <div class="audience-icon">🎵</div>
+          <span>Música</span>
+        </div>
+        <div class="audience-card reveal reveal-delay-3">
+          <div class="audience-icon">📐</div>
+          <span>Reforço Escolar</span>
+        </div>
+        <div class="audience-card reveal reveal-delay-4">
+          <div class="audience-icon">🧘</div>
+          <span>Yoga & Pilates</span>
+        </div>
+        <div class="audience-card reveal reveal-delay-1">
+          <div class="audience-icon">🍳</div>
+          <span>Culinária</span>
+        </div>
+        <div class="audience-card reveal reveal-delay-2">
+          <div class="audience-icon">💃</div>
+          <span>Dança</span>
+        </div>
+        <div class="audience-card reveal reveal-delay-3">
+          <div class="audience-icon">🎨</div>
+          <span>Artes</span>
+        </div>
+        <div class="audience-card reveal reveal-delay-4">
+          <div class="audience-icon">✦</div>
+          <span>Qualquer área</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOR -->
+  <section class="pain-section">
+    <div class="container">
+      <h2 class="reveal">Se você é professor particular,<br><em>provavelmente já sofreu com isso:</em></h2>
+      <div class="pain-grid">
+        <div class="pain-item reveal reveal-delay-1">
+          <div class="pain-icon">📱</div>
+          <div>
+            <h4>Tudo pelo WhatsApp</h4>
+            <p>Cobranças, reagendamentos, materiais e confirmações misturadas nas conversas. Impossível organizar e difícil de parecer profissional.</p>
+          </div>
+        </div>
+        <div class="pain-item reveal reveal-delay-2">
+          <div class="pain-icon">💸</div>
+          <div>
+            <h4>Inadimplência sem controle</h4>
+            <p>Alunos que "esqueceram" de pagar, cobranças constrangedoras, pagamentos atrasados que você nunca sabe quando vão cair.</p>
+          </div>
+        </div>
+        <div class="pain-item reveal reveal-delay-3">
+          <div class="pain-icon">😵</div>
+          <div>
+            <h4>Gestão rouba tempo das aulas</h4>
+            <p>Horas perdidas em planilhas, confirmações manuais e controles no papel — tempo que deveria estar sendo investido em preparar aulas de qualidade.</p>
+          </div>
+        </div>
+        <div class="pain-item reveal reveal-delay-4">
+          <div class="pain-icon">📊</div>
+          <div>
+            <h4>Sem visão do seu negócio</h4>
+            <p>Não sabe exatamente quanto ganha por mês, quantos alunos vai perder, qual é a sua hora mais lucrativa. Ensinar sem dados é navegar no escuro.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÃO -->
+  <section class="solution-section" id="como-funciona">
+    <div class="container">
+      <div class="solution-header reveal">
+        <span class="label">A solução</span>
+        <h2>Um app que faz tudo.<br>Para qualquer professor.</h2>
+        <p>Não importa a sua área: o KAV Class foi desenvolvido para resolver os problemas universais de qualquer professor particular que quer crescer com profissionalismo.</p>
+      </div>
+
+      <div class="solution-grid">
+        <div class="solution-visual">
+          <div class="solution-card-stack">
+            <div class="sol-card">
+              <div class="sol-card-header">
+                <span class="sol-card-icon">📅</span>
+                <span class="sol-card-title">Agenda da semana</span>
+              </div>
+              <div class="sol-card-bar"><div class="sol-card-bar-fill" style="width:70%"></div></div>
+              <div class="sol-card-meta">14 aulas agendadas · 0 conflitos</div>
+            </div>
+            <div class="sol-card">
+              <div class="sol-card-header">
+                <span class="sol-card-icon">👥</span>
+                <span class="sol-card-title">Alunos ativos</span>
+              </div>
+              <div class="sol-card-bar"><div class="sol-card-bar-fill" style="width:90%"></div></div>
+              <div class="sol-card-meta">27 alunos · Retenção de 91%</div>
+            </div>
+            <div class="sol-card">
+              <div class="sol-card-header">
+                <span class="sol-card-icon">💰</span>
+                <span class="sol-card-title">Receita mensal</span>
+              </div>
+              <div class="sol-card-bar"><div class="sol-card-bar-fill" style="width:85%"></div></div>
+              <div class="sol-card-meta">R$ 6.800 · Meta: R$ 8.000</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="solution-list">
+          <div class="solution-item reveal reveal-delay-1">
+            <div class="solution-check">📅</div>
+            <div>
+              <h4>Agenda que gerencia sozinha</h4>
+              <p>Confirme, reagende e cancele aulas com poucos toques. Notificações automáticas para alunos — sem precisar enviar nenhuma mensagem manualmente.</p>
+            </div>
+          </div>
+          <div class="solution-item reveal reveal-delay-2">
+            <div class="solution-check">💳</div>
+            <div>
+              <h4>Cobranças 100% automáticas</h4>
+              <p>Configure o valor e a frequência de cada aluno uma única vez. O KAV cobra, lembra e registra os pagamentos — você só vê o dinheiro cair na conta.</p>
+            </div>
+          </div>
+          <div class="solution-item reveal reveal-delay-3">
+            <div class="solution-check">📊</div>
+            <div>
+              <h4>Dashboard do seu negócio</h4>
+              <p>Veja em tempo real: receita mensal, taxa de retenção, alunos que estão sumindo, meses mais lucrativos. Informação para crescer de forma inteligente.</p>
+            </div>
+          </div>
+          <div class="solution-item reveal reveal-delay-4">
+            <div class="solution-check">👤</div>
+            <div>
+              <h4>Perfil profissional completo</h4>
+              <p>Cada aluno tem seu histórico: frequência, progresso, materiais e observações. Você chega em cada aula sabendo exatamente onde parou.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARATIVO -->
+  <section class="compare-section">
+    <div class="container">
+      <div class="compare-header reveal">
+        <span class="label">Por que KAV?</span>
+        <h2>A diferença que você vai sentir<br>desde o primeiro dia</h2>
+      </div>
+      <div class="reveal" style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Situação</th>
+              <th class="col-kav">Com o KAV ✓</th>
+              <th>Sem o KAV</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cobranças de mensalidade</td>
+              <td class="col-kav check-yes">Automáticas, sem constrangimento</td>
+              <td class="col-others">Manual pelo WhatsApp, constrangedor</td>
+            </tr>
+            <tr>
+              <td>Agenda de aulas</td>
+              <td class="col-kav check-yes">Calendário visual, sem conflitos</td>
+              <td class="col-others">Papel, planilha ou app genérico</td>
+            </tr>
+            <tr>
+              <td>Confirmação de presença</td>
+              <td class="col-kav check-yes">Automática por notificação</td>
+              <td class="col-others">Lembrar manualmente cada aluno</td>
+            </tr>
+            <tr>
+              <td>Relatórios financeiros</td>
+              <td class="col-kav check-yes">Dashboard em tempo real</td>
+              <td class="col-others">Nenhum ou planilha manual</td>
+            </tr>
+            <tr>
+              <td>Histórico de cada aluno</td>
+              <td class="col-kav check-yes">Completo: aulas, pagamentos, progresso</td>
+              <td class="col-others">Espalhado em vários apps e anotações</td>
+            </tr>
+            <tr>
+              <td>Imagem profissional</td>
+              <td class="col-kav check-yes">App próprio, comunicação organizada</td>
+              <td class="col-others">WhatsApp misturado com pessoal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCIONALIDADES GERAIS -->
+  <section class="niche-section">
+    <div class="container">
+      <div class="niche-header reveal">
+        <span class="label">O que você tem no KAV</span>
+        <h2>Tudo que um professor<br>profissional precisa</h2>
+        <p>Funcionalidades completas para gerenciar qualquer tipo de aula particular com eficiência e profissionalismo.</p>
+      </div>
+
+      <div class="niche-grid">
+        <div class="niche-card reveal reveal-delay-1">
+          <div class="niche-icon">📅</div>
+          <h3>Agenda inteligente</h3>
+          <p>Calendário visual com aulas fixas, avulsas e reagendamentos. Notificações automáticas para você e seus alunos antes de cada aula.</p>
+        </div>
+        <div class="niche-card reveal reveal-delay-2">
+          <div class="niche-icon">💳</div>
+          <h3>Gestão financeira completa</h3>
+          <p>Controle de mensalidades, aulas avulsas, pacotes e histórico de pagamentos. Relatórios de receita mensais e anuais com um toque.</p>
+        </div>
+        <div class="niche-card reveal reveal-delay-3">
+          <div class="niche-icon">👥</div>
+          <h3>Perfil detalhado de cada aluno</h3>
+          <p>Dados de contato, histórico de aulas, progresso, materiais compartilhados e observações pessoais — tudo em uma tela limpa e organizada.</p>
+        </div>
+        <div class="niche-card reveal reveal-delay-1">
+          <div class="niche-icon">📊</div>
+          <h3>Dashboard de negócio</h3>
+          <p>Veja sua receita projetada, taxa de retenção, alunos em risco de cancelar e muito mais. Dados reais para decisões inteligentes.</p>
+        </div>
+        <div class="niche-card reveal reveal-delay-2">
+          <div class="niche-icon">📁</div>
+          <h3>Materiais organizados</h3>
+          <p>Compartilhe exercícios, PDFs, links e conteúdos diretamente pelo app, por aluno. Fim dos arquivos perdidos no WhatsApp.</p>
+        </div>
+        <div class="niche-card reveal reveal-delay-3">
+          <div class="niche-icon">🔔</div>
+          <h3>Notificações automáticas</h3>
+          <p>Lembretes de aula, vencimento de mensalidade, confirmação de presença — tudo disparado automaticamente, sem ação manual da sua parte.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="results-section">
+    <div class="container">
+      <h2 class="reveal">Professores que usam o KAV <em style="color:var(--aqua);font-style:normal;">ensinam mais e ganham melhor</em></h2>
+      <div class="results-grid">
+        <div class="result-item reveal reveal-delay-1">
+          <span class="result-num" data-target="10" data-suffix="k+">0</span>
+          <span class="result-label">Professores cadastrados no Brasil</span>
+        </div>
+        <div class="result-item reveal reveal-delay-2">
+          <span class="result-num" data-target="40" data-suffix="%">0%</span>
+          <span class="result-label">Aumento médio de renda no 1º ano</span>
+        </div>
+        <div class="result-item reveal reveal-delay-3">
+          <span class="result-num" data-target="5" data-suffix="h">0h</span>
+          <span class="result-label">Economizadas em burocracia por semana</span>
+        </div>
+        <div class="result-item reveal reveal-delay-4">
+          <span class="result-num" data-target="4.9" data-suffix="★">0★</span>
+          <span class="result-label">Avaliação média nas lojas de app</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="plan-section">
+    <div class="container">
+      <div class="plan-header reveal">
+        <span class="label">Planos</span>
+        <h2>Comece grátis,<br>cresça quando quiser</h2>
+        <p>Sem surpresas, sem letras miúdas. Escolha o plano que faz sentido para o tamanho da sua agenda.</p>
+      </div>
+
+      <div class="plans-grid">
+        <div class="plan-card reveal reveal-delay-1">
+          <div class="plan-name">Básico</div>
+          <div class="plan-price">
+            <strong>Grátis</strong>
+            <span>para sempre</span>
+          </div>
+          <p class="plan-desc">Perfeito para quem está começando e quer organizar até 5 alunos.</p>
+          <ul class="plan-features">
+            <li>Até 5 alunos</li>
+            <li>Agenda básica</li>
+            <li>Controle de pagamentos</li>
+            <li>Relatórios mensais</li>
+          </ul>
+          <a href="#download" class="btn btn-outline-dark btn-block">Começar grátis</a>
+        </div>
+
+        <div class="plan-card plan-card--featured reveal reveal-delay-2">
+          <div class="plan-popular">Mais popular</div>
+          <div class="plan-name">Profissional</div>
+          <div class="plan-price">
+            <strong>R$39</strong>
+            <span>/mês</span>
+          </div>
+          <p class="plan-desc">Para professores que levam a sério e querem crescer com estrutura.</p>
+          <ul class="plan-features">
+            <li>Alunos ilimitados</li>
+            <li>Cobrança automática</li>
+            <li>Dashboard avançado</li>
+            <li>Materiais e arquivos</li>
+            <li>Notificações automáticas</li>
+            <li>Relatórios detalhados</li>
+          </ul>
+          <a href="#download" class="btn btn-primary btn-block">Começar grátis por 14 dias</a>
+        </div>
+
+        <div class="plan-card reveal reveal-delay-3">
+          <div class="plan-name">Escola</div>
+          <div class="plan-price">
+            <strong>R$99</strong>
+            <span>/mês</span>
+          </div>
+          <p class="plan-desc">Para escolas e estúdios com múltiplos professores e turmas.</p>
+          <ul class="plan-features">
+            <li>Múltiplos professores</li>
+            <li>Gestão de turmas</li>
+            <li>Painel administrativo</li>
+            <li>Relatórios por professor</li>
+            <li>Suporte prioritário</li>
+          </ul>
+          <a href="#download" class="btn btn-outline-dark btn-block">Falar com especialista</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="lp-testimonials">
+    <div class="container">
+      <h2 class="reveal">Professores de todas as áreas<br>já transformaram suas aulas</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Sou professora de yoga e sempre tive dificuldade de cobrar. Com o KAV, a cobrança é automática e meus alunos recebem os lembretes direto pelo app. Fim da inadimplência!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PS</div>
+            <div>
+              <strong>Priscila Souza</strong>
+              <span>Professora de yoga · Florianópolis</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card testimonial-card--featured reveal reveal-delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Dou reforço de matemática para 22 alunos do ensino médio. Antes, era um caos de planilhas e WhatsApp. Hoje, o KAV me dá total controle — e sobra tempo para preparar aulas melhores."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RM</div>
+            <div>
+              <strong>Rodrigo Mendes</strong>
+              <span>Professor de matemática · Brasília</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Ensino culinária e o KAV organizou minha lista de espera, agenda de turmas e cobranças. Meu negócio ficou muito mais profissional — alunos notam a diferença."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">TL</div>
+            <div>
+              <strong>Tatiana Lopes</strong>
+              <span>Chef e professora de culinária · Porto Alegre</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="lp-cta" id="download">
+    <div class="container">
+      <span class="label label--light">Comece hoje, grátis</span>
+      <h2>Seu negócio de aulas<br>merece ser profissional</h2>
+      <p>Junte-se a mais de 10.000 professores que já deixaram a burocracia para trás. Configuração em 2 minutos, sem cartão de crédito.</p>
+      <div class="lp-cta-buttons">
+        <a href="#" class="store-btn">
+          <span class="store-icon">🍎</span>
+          <div><small>Baixar na</small><strong>App Store</strong></div>
+        </a>
+        <a href="#" class="store-btn">
+          <span class="store-icon">▶</span>
+          <div><small>Disponível no</small><strong>Google Play</strong></div>
+        </a>
+      </div>
+      <span class="lp-cta-note">✓ Grátis para sempre · ✓ Sem cartão · ✓ Cancele quando quiser</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="lp-footer">
+    <div class="container">
+      <img src="img/logo kav class.png" alt="KAV Class" height="28">
+      <p>© 2026 KAV. Todos os direitos reservados.</p>
+      <div class="lp-footer-links">
+        <a href="index.html">Site principal</a>
+        <a href="lp-idiomas.html">Para idiomas</a>
+        <a href="lp-musica.html">Para música</a>
+        <a href="#">Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY CTA MOBILE -->
+  <div class="sticky-cta">
+    <p>Grátis para começar</p>
+    <a href="#download" class="btn btn-primary">Baixar agora</a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

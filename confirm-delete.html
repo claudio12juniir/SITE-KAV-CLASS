@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmar exclusão de conta — KAV Class</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--white-off); }
+
+    .confirm-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    .confirm-logo {
+      margin-bottom: 32px;
+    }
+
+    .confirm-logo img {
+      height: 44px;
+      filter: invert(0);
+    }
+
+    .confirm-card {
+      max-width: 480px;
+      width: 100%;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--r-xl);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .confirm-icon { font-size: 3rem; margin-bottom: 20px; line-height: 1; }
+
+    .confirm-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: var(--black);
+    }
+
+    .confirm-card > div > p {
+      color: var(--gray-600);
+      margin-bottom: 24px;
+    }
+
+    .confirm-email-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--gray-100);
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 28px;
+    }
+
+    .btn-danger {
+      background: #dc2626;
+      color: #fff;
+      border-color: #dc2626;
+    }
+
+    .btn-danger:hover {
+      background: #b91c1c;
+      border-color: #b91c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(220, 38, 38, 0.25);
+    }
+
+    .btn-danger[disabled] {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .confirm-warning-text {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      margin-top: 14px;
+      margin-bottom: 0;
+    }
+
+    .confirm-back-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 0.875rem;
+      color: var(--gray-400);
+      transition: color 0.2s;
+    }
+
+    .confirm-back-link:hover { color: var(--aqua); }
+
+    @media (max-width: 520px) {
+      .confirm-card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="confirm-page">
+
+    <a href="index.html" class="confirm-logo">
+      <img src="img/logo kav class.png" alt="KAV Class">
+    </a>
+
+    <div class="confirm-card">
+
+      <!-- Estado: carregando -->
+      <div id="state-loading">
+        <div class="confirm-icon">⏳</div>
+        <h2>Verificando link...</h2>
+        <p>Aguarde um momento.</p>
+      </div>
+
+      <!-- Estado: aguardando confirmação do usuário -->
+      <div id="state-confirm" hidden>
+        <div class="confirm-icon">⚠️</div>
+        <h2>Excluir conta permanentemente?</h2>
+        <p>Você está prestes a excluir a conta associada ao e-mail:</p>
+        <span class="confirm-email-tag" id="display-email"></span>
+        <p>Todos os seus dados serão removidos do sistema. Essa ação <strong>não pode ser desfeita</strong>.</p>
+        <button id="btn-delete" class="btn btn-danger btn-block btn-lg">
+          Sim, excluir minha conta
+        </button>
+        <p class="confirm-warning-text">Ao confirmar, sua conta será excluída permanentemente.</p>
+        <a href="index.html" class="confirm-back-link">← Voltar sem excluir</a>
+      </div>
+
+      <!-- Estado: conta excluída com sucesso -->
+      <div id="state-success" hidden>
+        <div class="confirm-icon">✅</div>
+        <h2>Conta excluída</h2>
+        <p>Sua conta foi removida permanentemente. Lamentamos vê-lo partir — foi um prazer ter você no KAV Class.</p>
+        <a href="index.html" class="btn btn-outline-dark btn-block btn-lg" style="justify-content:center;margin-top:8px;">
+          Voltar para o início
+        </a>
+      </div>
+
+      <!-- Estado: erro (link inválido, expirado ou falha) -->
+      <div id="state-error" hidden>
+        <div class="confirm-icon">❌</div>
+        <h2 id="error-title">Link inválido ou expirado</h2>
+        <p id="error-text">Este link de confirmação não é mais válido. Solicite um novo cancelamento.</p>
+        <a href="index.html#cancelar-cadastro" class="btn btn-primary btn-block btn-lg" style="justify-content:center;margin-top:8px;">
+          Tentar novamente
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Substitua pela URL base real da sua API
+    const API_BASE = 'https://sua-api.com';
+
+    const params = new URLSearchParams(window.location.search);
+    const token  = params.get('token');
+    const email  = params.get('email') ? decodeURIComponent(params.get('email')) : null;
+
+    function showState(id) {
+      ['state-loading', 'state-confirm', 'state-success', 'state-error'].forEach(s => {
+        document.getElementById(s).hidden = (s !== id);
+      });
+    }
+
+    if (!token || !email) {
+      showState('state-error');
+    } else {
+      document.getElementById('display-email').textContent = email;
+      showState('state-confirm');
+    }
+
+    document.getElementById('btn-delete').addEventListener('click', async () => {
+      const btn = document.getElementById('btn-delete');
+      btn.textContent = 'Excluindo conta...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/account/delete`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, email }),
+        });
+
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          document.getElementById('error-title').textContent =
+            res.status === 410 ? 'Link expirado' : 'Erro ao excluir conta';
+          document.getElementById('error-text').textContent =
+            data.message || 'Ocorreu um erro. Solicite um novo link de cancelamento.';
+          showState('state-error');
+          return;
+        }
+
+        showState('state-success');
+
+      } catch {
+        document.getElementById('error-title').textContent = 'Erro de conexão';
+        document.getElementById('error-text').textContent  =
+          'Não foi possível conectar ao servidor. Tente novamente mais tarde.';
+        showState('state-error');
+      }
+    });
+  </script>
+</body>
+</html>

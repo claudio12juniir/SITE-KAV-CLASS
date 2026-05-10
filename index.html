@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAV Class — O app para professores modernos</title>
+  <meta name="description" content="KAV Class é o app completo para professores particulares. Gerencie agenda, alunos e cobranças em um só lugar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="img/logo kav class.png" alt="KAV Class" height="56">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#cancelar-cadastro">Cancelar conta</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#download" class="btn btn-primary">Baixar agora</a>
+      </div>
+      <button class="nav-toggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-nav">
+    <a href="#sobre">Sobre</a>
+    <a href="#recursos">Recursos</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#cancelar-cadastro">Cancelar conta</a>
+    <a href="#download" class="btn btn-primary btn-lg">Baixar agora</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="container hero-container">
+
+      <div class="hero-content reveal">
+        <span class="badge">✦ Novo · KAV Class 2.0</span>
+        <h1>O app que transforma<br>como você <span class="highlight">ensina</span></h1>
+        <p>Agenda, alunos e cobranças em um só lugar. O KAV Class foi feito para professores particulares que querem ensinar mais e se preocupar menos com burocracia.</p>
+        <div class="hero-ctas">
+          <a href="#download" class="btn btn-primary btn-lg">Começar agora</a>
+          <a href="#recursos" class="btn btn-ghost btn-lg">Ver recursos</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>4.9★</strong>
+            <span>Avaliação nas lojas</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <strong>Nº 1</strong>
+            <span>App para professores</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Dedicado ao ensino</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-glow"></div>
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="app-ui">
+              <div class="app-header">
+                <div class="app-greeting">Olá, Prof. Ana 👋</div>
+                <div class="app-date">Qui, 8 de maio</div>
+              </div>
+              <div class="app-card app-card--green">
+                <div class="app-card-label">Próxima aula em 30min</div>
+                <div class="app-card-title">Inglês Avançado</div>
+                <div class="app-card-time">14:30 · 60 minutos · Online</div>
+              </div>
+              <div class="app-grid">
+                <div class="app-mini-card">
+                  <div class="app-mini-icon">👥</div>
+                  <div class="app-mini-label">12 alunos ativos</div>
+                </div>
+                <div class="app-mini-card">
+                  <div class="app-mini-icon">📅</div>
+                  <div class="app-mini-label">5 aulas hoje</div>
+                </div>
+                <div class="app-mini-card">
+                  <div class="app-mini-icon">💰</div>
+                  <div class="app-mini-label">R$ 3.200 / mês</div>
+                </div>
+                <div class="app-mini-card">
+                  <div class="app-mini-icon">⭐</div>
+                  <div class="app-mini-label">4.9 avaliação</div>
+                </div>
+              </div>
+              <div style="margin-top: auto;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                  <span style="font-size:0.6rem;color:rgba(255,255,255,0.4);">Meta mensal</span>
+                  <span style="font-size:0.6rem;color:#00C9A7;font-weight:700;">78%</span>
+                </div>
+                <div class="app-bar"><div class="app-bar-fill"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="float-badge float-badge--1">🎯 Meta batida!</div>
+        <div class="float-badge float-badge--2">📱 +1 novo aluno</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-bar">
+    <div class="container">
+      <p>Professores de todo o Brasil confiam no KAV Class</p>
+      <div class="trust-logos">
+        <span>Idiomas</span>
+        <span>Música</span>
+        <span>Reforço</span>
+        <span>Yoga</span>
+        <span>Culinária</span>
+        <span>Dança</span>
+        <span>Arte</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="section" id="sobre">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Por que KAV Class?</span>
+        <h2>Feito para professores,<br>por professores</h2>
+        <p>Entendemos os desafios de quem vive de ensinar. O KAV Class resolve os problemas reais do dia a dia — sem complicação, sem curva de aprendizado.</p>
+      </div>
+
+      <!-- AUDIENCES -->
+      <div class="audience-strip reveal">
+        <a href="lp-idiomas.html" class="audience-pill">
+          <span class="audience-pill-icon">🌍</span>
+          <div>
+            <strong>Professor de idiomas?</strong>
+            <span>Veja o KAV Class feito para você →</span>
+          </div>
+        </a>
+        <a href="lp-musica.html" class="audience-pill">
+          <span class="audience-pill-icon">🎵</span>
+          <div>
+            <strong>Professor de música?</strong>
+            <span>Veja o KAV Class feito para você →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECURSOS -->
+  <section class="section section--gray" id="recursos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Recursos</span>
+        <h2>Tudo que você precisa<br>em um único app</h2>
+        <p>Do agendamento ao recebimento, o KAV Class é a plataforma completa para professores que levam o ensino a sério.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">📅</div>
+          <h3>Agenda inteligente</h3>
+          <p>Gerencie todos os seus horários em um calendário visual. Evite conflitos e nunca perca uma aula.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">👥</div>
+          <h3>Gestão de alunos</h3>
+          <p>Histórico completo de cada aluno: frequência, progresso, pagamentos e muito mais em um só lugar.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">💳</div>
+          <h3>Cobranças automáticas</h3>
+          <p>Chega de constrangimento. O app envia lembretes de pagamento e gera recibos automaticamente.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">📊</div>
+          <h3>Relatórios financeiros</h3>
+          <p>Veja sua receita, taxa de retenção e crescimento com dashboards claros e atualizados em tempo real.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">🎯</div>
+          <h3>Planos de aula</h3>
+          <p>Crie e organize seu material didático, defina objetivos e acompanhe a evolução de cada aluno.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">🔔</div>
+          <h3>Notificações automáticas</h3>
+          <p>Lembretes de aula para alunos, confirmações e avisos de cobrança — tudo no piloto automático.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section section--dark" id="como-funciona">
+    <div class="container">
+      <div class="section-header section-header--light reveal">
+        <span class="label label--light">Como funciona</span>
+        <h2>Em 3 passos simples,<br>sua vida muda</h2>
+        <p>Comece a usar hoje e sinta a diferença já na primeira semana. Sem complicação.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step step--dark reveal reveal-delay-1">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Crie seu perfil</h3>
+            <p>Cadastre-se em menos de 2 minutos. Informe sua especialidade, horários e valores das aulas.</p>
+          </div>
+        </div>
+        <div class="step-arrow" style="color: #2a2a2a;">→</div>
+        <div class="step step--dark reveal reveal-delay-2">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Adicione seus alunos</h3>
+            <p>Importe sua lista ou adicione manualmente. Configure horários e plano de cada um.</p>
+          </div>
+        </div>
+        <div class="step-arrow" style="color: #2a2a2a;">→</div>
+        <div class="step step--dark reveal reveal-delay-3">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Gerencie tudo</h3>
+            <p>Dê suas aulas com tranquilidade. O KAV cuida do resto: pagamentos, lembretes e relatórios.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="section" id="depoimentos">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Depoimentos</span>
+        <h2>Quem usa, não larga</h2>
+        <p>Professores de todo o Brasil transformaram sua rotina com o KAV Class. Veja o que eles dizem.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Antes eu perdia horas controlando pagamentos em planilhas. Hoje tudo é automático. Recuperei tempo para focar nas aulas e minha renda cresceu 40% em 6 meses."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AM</div>
+            <div>
+              <strong>Ana Martins</strong>
+              <span>Professora de inglês · São Paulo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card testimonial-card--featured reveal reveal-delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"O KAV Class é indispensável. Tenho 35 alunos e gerencio tudo pelo celular. A cobrança automática eliminou completamente minha inadimplência."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">CR</div>
+            <div>
+              <strong>Carlos Ribeiro</strong>
+              <span>Professor de violão · Rio de Janeiro</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p>"Meus alunos adoram acompanhar o progresso. Consigo mostrar a evolução de cada um de forma visual — isso aumentou muito minha taxa de retenção."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">LF</div>
+            <div>
+              <strong>Larissa Fonseca</strong>
+              <span>Professora de espanhol · Belo Horizonte</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="section section--dark cta-section" id="download">
+    <div class="container">
+      <div class="cta-content reveal">
+        <span class="label label--light">Disponível agora</span>
+        <h2>Pronto para transformar<br>seu modo de ensinar?</h2>
+        <p>Descubra o app que está transformando a forma de ensinar no Brasil. Seus alunos entram gratuitamente — você tem o controle total.</p>
+        <div class="cta-buttons">
+          <a href="#" class="store-btn">
+            <span class="store-icon">🍎</span>
+            <div>
+              <small>Baixar na</small>
+              <strong>App Store</strong>
+            </div>
+          </a>
+          <a href="#" class="store-btn">
+            <span class="store-icon">▶</span>
+            <div>
+              <small>Disponível no</small>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CANCELAR CADASTRO -->
+  <section class="section" id="cancelar-cadastro">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">Cancelar cadastro</span>
+        <h2>Excluir<br>minha conta</h2>
+        <p>Informe seu e-mail e senha. Você receberá um e-mail de confirmação — só após clicar no link sua conta será removida permanentemente.</p>
+      </div>
+
+      <div class="cancelar-wrapper reveal">
+
+        <!-- Passo 1: formulário -->
+        <div id="step-form">
+          <form id="form-cancelar" class="kav-form" novalidate>
+            <div class="form-group">
+              <label for="cancel-email">E-mail da conta</label>
+              <input type="email" id="cancel-email" placeholder="seu@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="cancel-senha">Senha</label>
+              <div class="input-password-wrap">
+                <input type="password" id="cancel-senha" placeholder="Sua senha" required>
+                <button type="button" class="toggle-password" aria-label="Mostrar senha" data-target="cancel-senha">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div id="cancel-error" class="form-message form-message--error" hidden>
+              <span>✕</span>
+              <div>
+                <strong id="cancel-error-title">Credenciais inválidas</strong>
+                <p id="cancel-error-text">E-mail ou senha incorretos. Verifique e tente novamente.</p>
+              </div>
+            </div>
+            <button type="submit" id="cancel-submit" class="btn btn-outline-dark btn-block btn-lg">
+              Solicitar cancelamento
+            </button>
+          </form>
+          <p class="cancel-disclaimer">Ao prosseguir você receberá um e-mail de confirmação. A exclusão só ocorre após confirmar.</p>
+        </div>
+
+        <!-- Passo 2: e-mail enviado -->
+        <div id="step-email-sent" hidden>
+          <div class="form-message form-message--success">
+            <span>✓</span>
+            <div>
+              <strong>E-mail de confirmação enviado</strong>
+              <p>Verifique sua caixa de entrada e clique no link para concluir a exclusão. O link expira em 24 horas.</p>
+            </div>
+          </div>
+          <p class="cancel-disclaimer" style="text-align:center;margin-top:20px;">Não encontrou o e-mail? Verifique a pasta de spam.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="img/logo kav class.png" alt="KAV Class" height="48">
+          <p>Tecnologia para professores que levam o ensino a sério.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Produto</h4>
+          <a href="#sobre">Sobre o KAV Class</a>
+          <a href="#recursos">Recursos</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#download">Download</a>
+        </div>
+        <div class="footer-links">
+          <h4>Para sua área</h4>
+          <a href="lp-idiomas.html">Professores de idiomas</a>
+          <a href="lp-musica.html">Professores de música</a>
+        </div>
+        <div class="footer-links">
+          <h4>Empresa</h4>
+          <a href="#">Sobre nós</a>
+          <a href="#">Blog</a>
+          <a href="#">Contato</a>
+          <a href="#cancelar-cadastro">Cancelar conta</a>
+          <a href="#">Política de privacidade</a>
+          <a href="#">Termos de uso</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 KAV Class. Todos os direitos reservados.</p>
+        <p style="color: rgba(255,255,255,0.15);">Feito com ♥ para professores</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
