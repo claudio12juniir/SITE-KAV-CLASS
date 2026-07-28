@@ -180,6 +180,66 @@ if (formCancelar) {
   });
 }
 
+// === CONTATO / ORÇAMENTO (WhatsApp) ===
+const WHATSAPP_NUMBER = '5511977197350';
+const whatsappBtn = document.getElementById('whatsapp-cta');
+const contactChips = document.querySelectorAll('.contact-chip');
+
+function buildWhatsappMessage(service) {
+  const base = 'Olá! Vim pelo site da KAV e quero um orçamento';
+  return service ? `${base} para ${service}.` : `${base}.`;
+}
+
+function setWhatsappService(service) {
+  if (!whatsappBtn) return;
+  whatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsappMessage(service))}`;
+}
+
+if (whatsappBtn) {
+  setWhatsappService(null);
+
+  contactChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const alreadyActive = chip.classList.contains('active');
+      contactChips.forEach(c => c.classList.remove('active'));
+
+      if (alreadyActive) {
+        setWhatsappService(null);
+        return;
+      }
+
+      chip.classList.add('active');
+      setWhatsappService(chip.dataset.service);
+      whatsappBtn.classList.add('pulse-once');
+      setTimeout(() => whatsappBtn.classList.remove('pulse-once'), 500);
+    });
+  });
+
+  // Links "Solicitar orçamento" dos cards de Serviços pré-selecionam o chip correspondente
+  document.querySelectorAll('.feature-card-link[data-service]').forEach(link => {
+    link.addEventListener('click', () => {
+      const target = [...contactChips].find(c => c.dataset.service === link.dataset.service);
+      if (target) {
+        contactChips.forEach(c => c.classList.remove('active'));
+        target.classList.add('active');
+        setWhatsappService(target.dataset.service);
+      }
+    });
+  });
+}
+
+// === WHATSAPP FLOAT (oculto sobre a hero, para não cobrir os stats) ===
+const whatsappFloat = document.querySelector('.whatsapp-float');
+const heroSection = document.querySelector('.hero');
+if (whatsappFloat && heroSection) {
+  const floatObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      whatsappFloat.classList.toggle('whatsapp-float--hidden', entry.isIntersecting);
+    });
+  }, { threshold: 0 });
+  floatObserver.observe(heroSection);
+}
+
 // === STICKY CTA (LP) ===
 const stickyCta = document.querySelector('.sticky-cta');
 if (stickyCta) {
