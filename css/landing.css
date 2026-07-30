@@ -114,6 +114,41 @@
   font-weight: 700;
 }
 
+/* === VIDEO SECTION === */
+.video-section {
+  padding: 0 0 100px;
+  background: var(--black);
+  position: relative;
+}
+
+.video-section .container { position: relative; z-index: 1; }
+
+.video-section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+
+.video-section-header h2 { color: var(--white); margin-bottom: 0; }
+
+.video-frame {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  border: 1px solid var(--aqua-line);
+  box-shadow: var(--shadow-aqua);
+  background: #0D0D0D;
+  line-height: 0;
+}
+
+.video-frame video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
 /* === PAIN SECTION === */
 .pain-section {
   padding: 90px 0;
@@ -408,6 +443,7 @@
 @media (max-width: 768px) {
   .lp-hero { padding: 130px 0 80px; }
   .lp-hero h1 { font-size: 2.2rem; }
+  .video-section { padding-bottom: 64px; }
   .pain-grid { grid-template-columns: 1fr; }
   .solution-grid { grid-template-columns: 1fr; }
   .solution-visual { display: none; }
